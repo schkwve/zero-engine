@@ -37,7 +37,7 @@ private:
 			"[FATAL]"
 		};
 
-		char output[BUFFER_SIZE];
+		char output[BUFFER_SIZE + log_level_string_size[log_level] + 2];
 		std::snprintf(output, BUFFER_SIZE + log_level_string_size[log_level] + 2,
 				"%s: %s\n", log_level_string[log_level].c_str(), buffer);
 
