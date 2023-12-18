@@ -109,7 +109,7 @@ public:
 		memset(buffer, 0, BUFFER_SIZE);
 		va_start(arg, format);
 		vsnprintf(buffer, BUFFER_SIZE, format, arg);
-		output_log(LOG_DEBUG, buffer);
+		output_log(LOG_FATAL, buffer);
 		va_end(arg);
 	}
 };
