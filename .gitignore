@@ -1,0 +1,10 @@
+# Build
+build/
+bin/
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+._*
