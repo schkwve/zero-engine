@@ -1,6 +1,5 @@
-#include <iostream>
-
 #include <ze_engine.h>
+#include <logging.h>
 
 /**
  * This function initializes the engine.
@@ -9,7 +8,7 @@
  */
 void ZeroEngine::Initialize()
 {
-	std::cout << "Hello World!\n";
+	Log::DEBUG("Hello World!");
 }
 
 /**

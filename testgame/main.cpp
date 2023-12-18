@@ -2,6 +2,10 @@
 
 int main(void)
 {
-	ZeroEngine::Initialize();
+	ZeroEngine engine;
+
+	engine.Initialize();
+	//engine.Run();
+	engine.Shutdown();
 	return 0;
 }

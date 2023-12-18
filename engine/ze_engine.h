@@ -3,8 +3,8 @@
 class ZeroEngine {
 public:
 	// Initializes the engine
-	static void Initialize();
+	void Initialize();
 
 	// Shuts the engine down
-	static void Shutdown();
+	void Shutdown();
 };
