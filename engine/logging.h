@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <mutex>
+#include <ctime>
 
 /*
  * There are 6 different logging levels:
