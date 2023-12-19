@@ -1,9 +1,10 @@
-# Build
-build/
-bin/
+# Build directories
+build
+build*
+bin
 
 # VSCode
-.vscode/
+.vscode
 
 # macOS
 .DS_Store
