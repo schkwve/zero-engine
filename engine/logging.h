@@ -1,115 +1,57 @@
 #pragma once
 
-#include <stdarg.h>
-#include <string>
-#include <cstdio>
-#include <vector>
+#include <stdio.h>
+#include <mutex>
+
+/*
+ * There are 6 different logging levels:
+ * TRACE, DEBUG, INFO, WARN, ERROR, FATAL
+ * 
+ * Their uses are... obvious.
+ */
 
 class Log {
 private:
-	enum LOG_LEVELS {
-		LOG_DEBUG = 0,
-		LOG_INFO = 1,
-		LOG_WARN = 2,
-		LOG_ERROR = 3,
-		LOG_FATAL = 4,
-	};
-
-	// Max buffer size in bytes
-	static constexpr int BUFFER_SIZE = 1024;
-
-	// Sizes of log level strings
-	static constexpr int log_level_string_size[] = {
-		7, // [DEBUG]
-		6, // [INFO]
-		6, // [WARN]
-		7, // [ERROR]
-		7  // [FATAL]
-	};
-
-	static void output_log(const int log_level, const char *buffer)
-	{
-		const std::vector<std::string> log_level_string = {
-			"[DEBUG]",
-			"[INFO]",
-			"[WARN]",
-			"[ERROR]",
-			"[FATAL]"
-		};
-
-		char output[BUFFER_SIZE + log_level_string_size[log_level] + 2];
-		std::snprintf(output, BUFFER_SIZE + log_level_string_size[log_level] + 2,
-				"%s: %s\n", log_level_string[log_level].c_str(), buffer);
-
-		std::printf("%s", output);
-		// TODO: Save logs to a file
-	}
+	static std::mutex mtx_logging;
 
 public:
-	/*
-	 * There are 5 different logging levels:
-	 * DEBUG, INFO, WARN, ERROR, FATAL
-	 * 
-	 * Their uses are... obvious.
-	 */
-
-	static void DEBUG(const char *format, ...)
+	template<typename... Args>
+	static void TRACE(const char *fmt, Args... args)
 	{
-		char buffer[BUFFER_SIZE];
-		va_list arg;
-
-		memset(buffer, 0, BUFFER_SIZE);
-		va_start(arg, format);
-		vsnprintf(buffer, BUFFER_SIZE, format, arg);
-		output_log(LOG_DEBUG, buffer);
-		va_end(arg);
+#ifdef __DEBUG__
+		printf("[trace]: %s\n", fmt, args...);
+#endif
 	}
 
-	static void INFO(char *format, ...)
+	template<typename... Args>
+	static void DEBUG(const char *fmt, Args... args)
 	{
-		char buffer[BUFFER_SIZE];
-		va_list arg;
-
-		memset(buffer, 0, BUFFER_SIZE);
-		va_start(arg, format);
-		vsnprintf(buffer, BUFFER_SIZE, format, arg);
-		output_log(LOG_INFO, buffer);
-		va_end(arg);
+#ifdef __DEBUG__
+		printf("[debug]: %s\n", fmt, args...);
+#endif
 	}
 
-	static void WARN(char *format, ...)
+	template<typename... Args>
+	static void INFO(const char *fmt, Args... args)
 	{
-		char buffer[BUFFER_SIZE];
-		va_list arg;
-
-		memset(buffer, 0, BUFFER_SIZE);
-		va_start(arg, format);
-		vsnprintf(buffer, BUFFER_SIZE, format, arg);
-		output_log(LOG_WARN, buffer);
-		va_end(arg);
+		printf("[info]: %s\n", fmt, args...);
 	}
 
-	static void ERROR(char *format, ...)
+	template<typename... Args>
+	static void WARN(const char *fmt, Args... args)
 	{
-		char buffer[BUFFER_SIZE];
-		va_list arg;
-
-		memset(buffer, 0, BUFFER_SIZE);
-		va_start(arg, format);
-		vsnprintf(buffer, BUFFER_SIZE, format, arg);
-		output_log(LOG_ERROR, buffer);
-		va_end(arg);
+		printf("[warn]: %s\n", fmt, args...);
 	}
 
-	static void FATAL(char *format, ...)
+	template<typename... Args>
+	static void ERROR(const char *fmt, Args... args)
 	{
-		char buffer[BUFFER_SIZE];
-		va_list arg;
+		printf("[error]: %s\n", fmt, args...);
+	}
 
-		memset(buffer, 0, BUFFER_SIZE);
-		va_start(arg, format);
-		vsnprintf(buffer, BUFFER_SIZE, format, arg);
-		output_log(LOG_FATAL, buffer);
-		va_end(arg);
+	template<typename... Args>
+	static void FATAL(const char *fmt, Args... args)
+	{
+		printf("[fatal]: %s\n", fmt, args...);
 	}
 };

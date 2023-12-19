@@ -8,6 +8,7 @@
  */
 void ZeroEngine::Initialize()
 {
+	Log::DEBUG("Hello, World!");
 }
 
 /**
