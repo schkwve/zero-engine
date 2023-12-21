@@ -10,8 +10,7 @@
  */
 void ZeroEngine::Initialize()
 {
-	Log::DEBUG("Hello, World!");
-	//RenderFrontend::Initialize(...);
+	Renderer::Initialize(RENDERER_VULKAN);
 }
 
 /**
@@ -21,4 +20,5 @@ void ZeroEngine::Initialize()
  */
 void ZeroEngine::Shutdown()
 {
+	Renderer::Shutdown();
 }

@@ -7,8 +7,11 @@ project(zero_engine)
 # Set the standard to C++17
 set(CMAKE_CXX_STANDARD 17)
 
-# Vulkan is required to build this engine... obviously :p
+# Check required package list
 find_package(Vulkan REQUIRED)
+
+# Compile third party components
+#add_subdirectory(third_party)
 
 # Optional GLSL Validator
 find_program(GLSL_VALIDATOR glslangValidator HINTS /usr/bin /usr/local/bin $ENV{VULKAN_SDK}/Bin $ENV{VULKAN_SDK}/Bin32)
