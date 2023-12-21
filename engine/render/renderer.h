@@ -1,15 +1,15 @@
 #pragma once
 
-enum RendererType {
+#include <ze_types.h>
+
+enum render_backend {
 	RENDERER_VULKAN,
 };
 
-class Renderer {
-private:
-	static bool (*InitializeBackend)();
-	static bool (*ShutdownBackend)();
-
-public:
-	static bool Initialize(RendererType type);
-	static void Shutdown();
+struct renderer_state {
+	bool (*backend_initialize)();
+	bool (*backend_shutdown)();
 };
+
+bool renderer_initialize(enum render_backend type);
+void renderer_shutdown();

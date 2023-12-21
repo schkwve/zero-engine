@@ -3,7 +3,7 @@
   <h1>Zerø Engine</h1>
   
   <p>
-    A Free & Open-Source Game Engine written in C++
+    A Free & Open-Source Game Engine written in pure C.
   </p>
 
 <p>
@@ -50,7 +50,7 @@
 
 ## About the Project
 
-Zerø Engine is a lightweight 3D Game Engine written in C++ and powered by Vulkan.
+Zerø Engine is a lightweight 3D Game Engine written in pure C and powered by Vulkan.
 
 ### Screenshots
 

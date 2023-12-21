@@ -8,9 +8,9 @@
  * 
  * @return	This routine does not return any value.
  */
-void ZeroEngine::Initialize()
+void engine_initialize()
 {
-	Renderer::Initialize(RENDERER_VULKAN);
+	renderer_initialize(RENDERER_VULKAN);
 }
 
 /**
@@ -18,7 +18,7 @@ void ZeroEngine::Initialize()
  * 
  * @return	This routine does not return any value.
  */
-void ZeroEngine::Shutdown()
+void engine_shutdown()
 {
-	Renderer::Shutdown();
+	renderer_shutdown();
 }

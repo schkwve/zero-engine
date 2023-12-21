@@ -1,9 +1,6 @@
 #pragma once
 
-#include <render/renderer.h>
+#include <ze_types.h>
 
-class VulkanRenderer : public Renderer {
-public:
-	bool InitializeBackend();
-	bool ShutdownBackend();
-};
+bool vulkan_initialize();
+bool vulkan_shutdown();

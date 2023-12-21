@@ -1,9 +1,9 @@
 project(engine)
 
 add_library(engine SHARED
-						ze_engine.cpp
-						render/renderer.cpp
-						render/vulkan/vk_renderer.cpp
+						ze_engine.c
+						render/renderer.c
+						render/vulkan/vk_renderer.c
 						)
 
 SET(CMAKE_CXX_FLAGS_DEBUG "-g -D__DEBUG__")
