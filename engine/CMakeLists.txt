@@ -6,8 +6,8 @@ add_library(engine SHARED
 						render/vulkan/vk_renderer.c
 						)
 
-SET(CMAKE_CXX_FLAGS_DEBUG "-g -D__DEBUG__")
-SET(CMAKE_CXX_FLAGS_RELEASE "-O3")
+SET(CMAKE_C_FLAGS_DEBUG "-g -D__DEBUG__")
+SET(CMAKE_C_FLAGS_RELEASE "-O3")
 
 target_include_directories(engine
 		PUBLIC

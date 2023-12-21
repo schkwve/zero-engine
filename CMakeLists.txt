@@ -4,8 +4,8 @@ cmake_minimum_required(VERSION 3.27.6)
 # Set project name
 project(zero_engine)
 
-# Set the standard to C++17
-set(CMAKE_CXX_STANDARD 17)
+# Set the standard to C17
+set(CMAKE_C_STANDARD 17)
 
 # Check required package list
 find_package(Vulkan REQUIRED)
