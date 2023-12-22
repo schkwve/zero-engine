@@ -1,3 +1,11 @@
+/**
+ * PROJECT:         Zero Engine
+ * FILE:            engine/ze_engine.c
+ * DESCRIPTION:     Zero Engine entry/shutdown points
+ * COPYRIGHT:       See LICENSE.md in the top level directory
+ * DEVELOPERS:      Jozef Nagy <schkwve@gmail.com>
+ */
+
 #include <ze_engine.h>
 #include <logging.h>
 

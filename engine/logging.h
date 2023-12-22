@@ -1,3 +1,11 @@
+/**
+ * PROJECT:         Zero Engine
+ * FILE:            engine/logging.h
+ * DESCRIPTION:     Logger
+ * COPYRIGHT:       See LICENSE.md in the top level directory
+ * DEVELOPERS:      Jozef Nagy <schkwve@gmail.com>
+ */
+
 #pragma once
 
 #include <stdarg.h>
