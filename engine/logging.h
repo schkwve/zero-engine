@@ -11,19 +11,33 @@
  * Their uses are... obvious.
  */
 
-#ifdef __DEBUG__
-#define TRACE(fmt, ...) log("TRACE", fmt, #__VA_ARGS__)
-#define DEBUG(fmt, ...) log("DEBUG", fmt, #__VA_ARGS__)
-#else
+#ifndef __DEBUG__
 #define TRACE(fmt, ...)
 #define DEBUG(fmt, ...)
+#else
+#define TRACE(fmt, ...) log("TRACE", fmt, #__VA_ARGS__)
+#define DEBUG(fmt, ...) log("DEBUG", fmt, #__VA_ARGS__)
 #endif
-#define INFO(fmt, ...) log("INFO", fmt, #__VA_ARGS__)
-#define WARN(fmt, ...) log("WARN", fmt, #__VA_ARGS__)
-#define ERROR(fmt, ...) log("ERROR", fmt, #__VA_ARGS__)
-#define FATAL(fmt, ...) log("FATAL", fmt, #__VA_ARGS__)
+#define INFO(fmt, ...) _log("INFO", fmt, #__VA_ARGS__)
+#define WARN(fmt, ...) _log("WARN", fmt, #__VA_ARGS__)
+#define ERROR(fmt, ...) _log("ERROR", fmt, #__VA_ARGS__)
+#define FATAL(fmt, ...) _log("FATAL", fmt, #__VA_ARGS__)
 
-static void log(const char *log_level_str, const char *fmt, ...)
+/**
+ * This private function formats a log string and prints it to stderr.
+ * 
+ * @param	log_level_str
+ * 			Log level string equivalent. E.g. "INFO"
+ * 
+ * @param	fmt
+ * 			Format string
+ * 
+ * @param	...
+ * 			Additional arguments
+ * 
+ * @return	Nothing.
+ */
+static void _log(const char *log_level_str, const char *fmt, ...)
 {
 	va_list args;
 	va_start(args, fmt);

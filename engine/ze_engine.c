@@ -6,17 +6,20 @@
 /**
  * This function initializes the engine.
  * 
- * @return	This routine does not return any value.
+ * @return	Nothing.
  */
 void engine_initialize()
 {
-	renderer_initialize(RENDERER_VULKAN);
+	if (!renderer_initialize(RENDERER_VULKAN)) {
+		FATAL("The rendering subsystem failed to initialize and Zero Engine cannot continue. Exitting...");
+		engine_shutdown();
+	}
 }
 
 /**
  * This function cleans up and shuts down the engine.
  * 
- * @return	This routine does not return any value.
+ * @return	Nothing.
  */
 void engine_shutdown()
 {
