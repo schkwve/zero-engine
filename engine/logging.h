@@ -2,21 +2,21 @@
  * PROJECT:         Zero Engine
  * FILE:            engine/logging.h
  * DESCRIPTION:     Logger
- * COPYRIGHT:       See LICENSE.md in the top level directory
+ * COPYRIGHT:       LGPL-3.0-only
  * DEVELOPERS:      Jozef Nagy <schkwve@gmail.com>
  */
 
 #pragma once
 
 #include <stdarg.h>
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
 #include <time.h>
 
 /*
  * There are 6 different logging levels:
  * TRACE, DEBUG, INFO, WARN, ERROR, FATAL
- * 
+ *
  * Their uses are... obvious.
  */
 
@@ -34,34 +34,34 @@
 
 /**
  * This private function formats a log string and prints it to stderr.
- * 
+ *
  * @param	log_level_str
  * 			Log level string equivalent. E.g. "INFO"
- * 
+ *
  * @param	fmt
  * 			Format string
- * 
+ *
  * @param	...
  * 			Additional arguments
- * 
+ *
  * @return	Nothing.
  */
 static void _log(const char *log_level_str, const char *fmt, ...)
 {
-	va_list args;
-	time_t cur_time;
-	struct tm *timestamp;
-	char timebuf[80];
-	char buffer[strlen(fmt) + strlen(log_level_str) + 88];
+    va_list args;
+    time_t cur_time;
+    struct tm *timestamp;
+    char timebuf[80];
+    char buffer[strlen(fmt) + strlen(log_level_str) + 88];
 
-	va_start(args, fmt);
+    va_start(args, fmt);
 
-	cur_time = time(NULL);
-	timestamp = localtime(&cur_time);
-	strftime(timebuf, 80, "%c", timestamp);
-	sprintf(buffer, "%s | [%s]: %s\n", timebuf, log_level_str, fmt);
+    cur_time = time(NULL);
+    timestamp = localtime(&cur_time);
+    strftime(timebuf, 80, "%c", timestamp);
+    sprintf(buffer, "%s | [%s]: %s\n", timebuf, log_level_str, fmt);
 
-	vprintf(buffer, args);
+    vprintf(buffer, args);
 
-	va_end(args);
+    va_end(args);
 }

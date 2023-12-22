@@ -2,7 +2,7 @@
  * PROJECT:         Zero Engine
  * FILE:            engine/ze_engine.h
  * DESCRIPTION:     Zero Engine entry/shutdown points
- * COPYRIGHT:       See LICENSE.md in the top level directory
+ * COPYRIGHT:       LGPL-3.0-only
  * DEVELOPERS:      Jozef Nagy <schkwve@gmail.com>
  */
 
