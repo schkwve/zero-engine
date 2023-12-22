@@ -9,6 +9,7 @@
 #pragma once
 
 #include <stdarg.h>
+#include <string.h>
 #include <stdio.h>
 #include <time.h>
 
@@ -23,13 +24,13 @@
 #define TRACE(fmt, ...)
 #define DEBUG(fmt, ...)
 #else
-#define TRACE(fmt, ...) log("TRACE", fmt, #__VA_ARGS__)
-#define DEBUG(fmt, ...) log("DEBUG", fmt, #__VA_ARGS__)
+#define TRACE(fmt, ...) log("TRACE", fmt, ##__VA_ARGS__)
+#define DEBUG(fmt, ...) log("DEBUG", fmt, ##__VA_ARGS__)
 #endif
-#define INFO(fmt, ...) _log("INFO", fmt, #__VA_ARGS__)
-#define WARN(fmt, ...) _log("WARN", fmt, #__VA_ARGS__)
-#define ERROR(fmt, ...) _log("ERROR", fmt, #__VA_ARGS__)
-#define FATAL(fmt, ...) _log("FATAL", fmt, #__VA_ARGS__)
+#define INFO(fmt, ...) _log("INFO", fmt, ##__VA_ARGS__)
+#define WARN(fmt, ...) _log("WARN", fmt, ##__VA_ARGS__)
+#define ERROR(fmt, ...) _log("ERROR", fmt, ##__VA_ARGS__)
+#define FATAL(fmt, ...) _log("FATAL", fmt, ##__VA_ARGS__)
 
 /**
  * This private function formats a log string and prints it to stderr.
@@ -48,13 +49,19 @@
 static void _log(const char *log_level_str, const char *fmt, ...)
 {
 	va_list args;
+	time_t cur_time;
+	struct tm *timestamp;
+	char timebuf[80];
+	char buffer[strlen(fmt) + strlen(log_level_str) + 88];
+
 	va_start(args, fmt);
 
-	time_t cur_time = time(NULL);
-	struct tm *timestamp = localtime(&cur_time);
-	char buffer[80];
-	strftime(buffer, 80, "%c", timestamp);
-	fprintf(stderr, "%s | [%s]: %s\n", buffer, log_level_str, fmt, args);
+	cur_time = time(NULL);
+	timestamp = localtime(&cur_time);
+	strftime(timebuf, 80, "%c", timestamp);
+	sprintf(buffer, "%s | [%s]: %s\n", timebuf, log_level_str, fmt);
+
+	vprintf(buffer, args);
 
 	va_end(args);
 }
