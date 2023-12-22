@@ -11,9 +11,6 @@ set(CMAKE_C_STANDARD 17)
 find_package(Vulkan REQUIRED)
 find_package(SDL2 REQUIRED)
 
-# Compile third party components
-#add_subdirectory(third_party)
-
 # Optional GLSL Validator
 find_program(GLSL_VALIDATOR glslangValidator HINTS /usr/bin /usr/local/bin $ENV{VULKAN_SDK}/Bin $ENV{VULKAN_SDK}/Bin32)
 
