@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <vulkan/vulkan.h>
+
 #include <logging.h>
 
 #define VK_CHECK(x) \
@@ -18,3 +20,13 @@
 			abort(); \
 		} \
 	} while(0);
+
+struct vulkan_state {
+	VkInstance instance;
+	VkDebugUtilsMessengerEXT debug_messenger;
+	
+	VkPhysicalDevice chosen_gpu;
+	VkDevice device;
+
+	VkSurfaceKHR window_surface;
+};

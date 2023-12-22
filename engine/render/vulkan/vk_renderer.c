@@ -6,6 +6,8 @@
  * DEVELOPERS:      Jozef Nagy <schkwve@gmail.com>
  */
 
+#include <SDL2/SDL.h>
+
 #include <render/vulkan/vk_renderer.h>
 #include <render/vulkan/vk_types.h>
 
@@ -20,8 +22,7 @@
  */
 bool vulkan_initialize()
 {
-	INFO("Initializing Vulkan...");
-	return false;
+	return true;
 }
 
 
@@ -33,6 +34,5 @@ bool vulkan_initialize()
  */
 bool vulkan_shutdown()
 {
-	INFO("Shutting down Vulkan...");
-	return false;
+	return true;
 }

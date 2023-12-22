@@ -16,11 +16,34 @@
  * 
  * @return	Nothing.
  */
-void engine_initialize()
+void engine_initialize(const char *app_name)
 {
-	if (!renderer_initialize(RENDERER_VULKAN)) {
+	// Initialize rendering subsystem
+	// -> Set window size to 1280x720
+	if (!renderer_initialize(app_name, 1280, 720, RENDERER_VULKAN)) {
 		FATAL("The rendering subsystem failed to initialize and Zero Engine cannot continue. Exitting...");
 		engine_shutdown();
+	}
+}
+
+/**
+ * This function is the main game loop.
+ * 
+ * @return	Nothing.
+ */
+void engine_run()
+{
+	SDL_Event e;
+	bool should_quit = false;
+
+	while (!should_quit) {
+		while (SDL_PollEvent(&e) != 0) {
+			if (e.type == SDL_QUIT) {
+				should_quit = true;
+			}
+		}
+
+		// engine_redraw();
 	}
 }
 

@@ -8,6 +8,14 @@
 
 #pragma once
 
+#include <stdlib.h>
+
+#define ZE_ASSERT(cond) \
+	if (cond) { \
+		FATAL("Assertion failed at %s:%s, aborting!", __FILE__, __LINE__); \
+		abort(); \
+	}
+
 typedef int bool;
 #define true 1
 #define false 0

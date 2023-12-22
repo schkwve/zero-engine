@@ -10,8 +10,8 @@
 
 int main(void)
 {
-	engine_initialize();
-	//engine_run();
+	engine_initialize("Zerø Engine Test Game");
+	engine_run();
 	engine_shutdown();
 	return 0;
 }

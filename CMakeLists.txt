@@ -9,6 +9,7 @@ set(CMAKE_C_STANDARD 17)
 
 # Check required package list
 find_package(Vulkan REQUIRED)
+find_package(SDL2 REQUIRED)
 
 # Compile third party components
 #add_subdirectory(third_party)

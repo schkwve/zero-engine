@@ -10,5 +10,6 @@
 
 #include <ze_types.h>
 
-void engine_initialize();
+void engine_initialize(const char *app_name);
+void engine_run();
 void engine_shutdown();

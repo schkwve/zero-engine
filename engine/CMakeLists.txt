@@ -14,9 +14,10 @@ target_include_directories(engine
 			$<INSTALL_INTERFACE:.>
 			$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
 		PRIVATE
+			${SDL2_INCLUDE_DIRS}
 			${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-target_link_libraries(engine PUBLIC Vulkan::Vulkan)
+target_link_libraries(engine PUBLIC ${SDL2_LIBRARIES} Vulkan::Vulkan)
 
 add_dependencies(engine shaders)
