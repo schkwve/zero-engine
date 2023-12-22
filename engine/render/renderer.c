@@ -52,7 +52,9 @@ bool renderer_initialize(enum render_backend backend)
  */
 void renderer_shutdown()
 {
-	renderer.backend_shutdown();
+	if (renderer.backend_shutdown) {
+		renderer.backend_shutdown();
+	}
 
 	renderer.backend_initialize = NULL;
 	renderer.backend_shutdown = NULL;
