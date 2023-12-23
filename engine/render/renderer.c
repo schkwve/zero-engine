@@ -69,8 +69,15 @@ bool renderer_initialize(const char *app_name, int window_width, int window_heig
     // Initialize backend
     renderer.is_initialized = renderer.backend_initialize(app_name);
 
-    // Show initialized window
-    SDL_ShowWindow(renderer.window);
+    if (renderer.is_initialized)
+    {
+        // Show initialized window
+        SDL_ShowWindow(renderer.window);
+    }
+    else
+    {
+        SDL_DestroyWindow(renderer.window);
+    }
 
     // Return
     return renderer.is_initialized;

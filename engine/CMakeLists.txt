@@ -5,6 +5,8 @@ add_library(engine SHARED
 						cont/darray.c
 						render/renderer.c
 						render/vulkan/vk_renderer.c
+						render/vulkan/vk_device.c
+						render/vulkan/vk_swapchain.c
 						)
 
 SET(CMAKE_C_FLAGS_DEBUG "-g -D__DEBUG__")

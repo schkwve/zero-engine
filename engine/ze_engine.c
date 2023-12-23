@@ -24,7 +24,7 @@ void engine_initialize(const char *app_name)
     {
         FATAL("The rendering subsystem failed to initialize and Zero Engine "
               "cannot continue. Exitting...");
-        engine_shutdown();
+        engine_shutdown(1);
     }
 }
 
@@ -57,7 +57,9 @@ void engine_run()
  *
  * @return	Nothing.
  */
-void engine_shutdown()
+void engine_shutdown(int exit_code)
 {
     renderer_shutdown();
+
+    exit(exit_code);
 }

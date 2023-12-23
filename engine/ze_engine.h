@@ -12,4 +12,4 @@
 
 void engine_initialize(const char *app_name);
 void engine_run();
-void engine_shutdown();
+void engine_shutdown(int exit_code);

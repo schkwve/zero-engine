@@ -23,10 +23,10 @@ struct renderer_state
     bool (*backend_initialize)(const char *);
     bool (*backend_shutdown)();
 
-    struct SDL_Window *window;
+    SDL_Window *window;
+    SDL_WindowFlags window_flags;
     int window_width;
     int window_height;
-    SDL_WindowFlags window_flags;
 
     bool is_initialized;
 };

@@ -12,6 +12,7 @@
 #include <cont/darray.h>
 
 #include <render/renderer.h>
+#include <render/vulkan/vk_device.h>
 #include <render/vulkan/vk_renderer.h>
 
 #include <logging.h>
@@ -51,7 +52,47 @@ bool vulkan_initialize(const char *app_name)
     create_info.ppEnabledExtensionNames = extension_names;
     create_info.enabledLayerCount = 0;
 
+    // Create instance
     VK_CHECK(vkCreateInstance(&create_info, NULL, &vk_state.instance));
+
+    INFO("Created Vulkan instance");
+
+#ifdef __DEBUG__
+    DEBUG("Vulkan extensions:");
+    for (size_t i = 0; i < darray_length(extension_names); i++)
+    {
+        DEBUG("    %s", extension_names[i]);
+    }
+#endif
+
+    VkPhysicalDevice physical_device = VK_NULL_HANDLE;
+    uint32_t device_count = 0;
+
+    vkEnumeratePhysicalDevices(vk_state.instance, &device_count, NULL);
+    if (device_count == 0)
+    {
+        FATAL("No GPUs found!");
+        return false;
+    }
+
+    VkPhysicalDevice *devices = darray_create(VkPhysicalDevice);
+    vkEnumeratePhysicalDevices(vk_state.instance, &device_count, devices);
+
+    for (size_t i = 0; i < device_count; i++)
+    {
+        DEBUG("Testing GPU %d...", i);
+        if (vulkan_device_is_suitable(devices[i]))
+        {
+            physical_device = devices[i];
+            break;
+        }
+    }
+
+    if (physical_device == VK_NULL_HANDLE)
+    {
+        FATAL("Failed to find a suitable GPU!");
+        return false;
+    }
 
     return true;
 }

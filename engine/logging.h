@@ -24,8 +24,8 @@
 #define TRACE(fmt, ...)
 #define DEBUG(fmt, ...)
 #else
-#define TRACE(fmt, ...) log("TRACE", fmt, ##__VA_ARGS__)
-#define DEBUG(fmt, ...) log("DEBUG", fmt, ##__VA_ARGS__)
+#define TRACE(fmt, ...) _log("TRACE", fmt, ##__VA_ARGS__)
+#define DEBUG(fmt, ...) _log("DEBUG", fmt, ##__VA_ARGS__)
 #endif
 #define INFO(fmt, ...) _log("INFO", fmt, ##__VA_ARGS__)
 #define WARN(fmt, ...) _log("WARN", fmt, ##__VA_ARGS__)
